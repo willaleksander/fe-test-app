@@ -1,27 +1,33 @@
-# FeTestApp
+# EXADS Frontend Test Project
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.29.
+This project is intended to be used as a base for the EXADS Frontend Test. It includes:
+- Empty Angular 8 app with required dependencies for Angular Material and Ngx Datatable already set up.
+- API to support the frontend app.
 
-## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Getting started
 
-## Code scaffolding
+### Prerequisites
+- Node 12+
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+### Set up
 
-## Build
+1. Clone this repo using your preferred method.
+2. Install apps dependencies.
+```
+$ npm install
+```
+3. Run the Angular app. By default it will run in `http://localhost:4200`
+```
+$ npm start
+```
+4. Run the API app. By default it will run in `http://localhost:3000`
+```
+$ npm run start-api
+```
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+## Need more help?
 
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+- Angular Material: see https://material.angular.io/
+- ngx-datatable: see https://github.com/swimlane/ngx-datatable
+- API docs: see https://documenter.getpostman.com/view/11918524/TzRNFAPs
