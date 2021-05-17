@@ -1,7 +1,7 @@
 const UsersConstants = {
   pagination: {
     defaultPage: 0,
-    defaultLimit: 100
+    defaultLimit: 20
   }
 }
 
