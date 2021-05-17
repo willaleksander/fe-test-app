@@ -69,7 +69,7 @@ const create = function(req, res) {
     return;
   }
 
-  const emailError = EmailValidator.validate(user);
+  const emailError = EmailValidator.validate(user.email);
   if (emailError) {
     ResponseHandler.sendErrorResponse(res, {
       data: undefined,
@@ -150,7 +150,7 @@ const update = function(req, res) {
   }
 
   const isUpdatingEmail = user.hasOwnProperty('email');
-  const emailError = isUpdatingEmail && EmailValidator.validate({ ...user, id: userId });
+  const emailError = isUpdatingEmail && EmailValidator.validate(user.email);
   if (emailError) {
     ResponseHandler.sendErrorResponse(res, {
       data: undefined,
