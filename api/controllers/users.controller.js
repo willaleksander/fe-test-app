@@ -12,30 +12,25 @@ const get = function(req, res) {
   const start = page * limit;
   const end = start + limit;
 
-  const users = DB.users.get();
+  const filterUsers = ({ email, username }) => {
+    const users = DB.users.get();
+    if (email && username) {
+      return users.filter(user => user.email === email && user.username === username);
+    }
 
-  if (email && username) {
-    ResponseHandler.sendSuccessResponse(res, {
-      data: users.filter(user => user.email === email && user.username === username).slice(start, end)
-    });
-    return;
+    if (email) {
+      return users.filter(user => user.email === email);
+    }
+
+    if (username) {
+      return users.filter(user => user.username === username);
+    }
+
+    return users;
   }
 
-  if (email) {
-    ResponseHandler.sendSuccessResponse(res, {
-      data: users.filter(user => user.email === email).slice(start, end)
-    });
-    return;
-  }
-
-  if (username) {
-    ResponseHandler.sendSuccessResponse(res, {
-      data: users.filter(user => user.username === username).slice(start, end)
-    });
-    return;
-  }
-
-  ResponseHandler.sendSuccessResponse(res, { data: users.slice(start, end) });
+  const users = filterUsers({ email, username });
+  ResponseHandler.sendSuccessResponse(res, { data: { users: users.slice(start, end), count: users.length } });
 }
 
 const getOne = function(req, res) {

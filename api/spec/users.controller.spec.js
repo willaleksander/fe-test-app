@@ -73,7 +73,8 @@ describe('UsersController', () => {
 
       UsersController.get(req, res);
   
-      expect(ResponseHandler.sendSuccessResponse).toHaveBeenCalledWith(res, { data: users.slice(defaultStart, defaultEnd) });
+      const data = { users: users.slice(defaultStart, defaultEnd), count: users.length };
+      expect(ResponseHandler.sendSuccessResponse).toHaveBeenCalledWith(res, { data });
     });
   
     it('should return a list of users filtered by username', () => {
@@ -83,8 +84,9 @@ describe('UsersController', () => {
 
       UsersController.get(req, res);
   
-      const filteredUsers = users.filter(user => user.username === username).slice(defaultStart, defaultEnd);
-      expect(ResponseHandler.sendSuccessResponse).toHaveBeenCalledWith(res, { data: filteredUsers });
+      const filteredUsers = users.filter(user => user.username === username);
+      const data = { users: filteredUsers.slice(defaultStart, defaultEnd), count: filteredUsers.length };
+      expect(ResponseHandler.sendSuccessResponse).toHaveBeenCalledWith(res, { data });
     });
   
     it('should return a list of users filtered by email', () => {
@@ -94,8 +96,9 @@ describe('UsersController', () => {
 
       UsersController.get(req, res);
   
-      const filteredUsers = users.filter(user => user.email === email).slice(defaultStart, defaultEnd);
-      expect(ResponseHandler.sendSuccessResponse).toHaveBeenCalledWith(res, { data: filteredUsers });
+      const filteredUsers = users.filter(user => user.email === email);
+      const data = { users: filteredUsers.slice(defaultStart, defaultEnd), count: filteredUsers.length };
+      expect(ResponseHandler.sendSuccessResponse).toHaveBeenCalledWith(res, { data });
     });
   
     it('should return a list of users filtered by email and username', () => {
@@ -105,8 +108,9 @@ describe('UsersController', () => {
 
       UsersController.get(req, res);
   
-      const filteredUsers = users.filter(user => user.email === email && user.username === username).slice(defaultStart, defaultEnd);
-      expect(ResponseHandler.sendSuccessResponse).toHaveBeenCalledWith(res, { data: filteredUsers });
+      const filteredUsers = users.filter(user => user.email === email && user.username === username);
+      const data = { users: filteredUsers.slice(defaultStart, defaultEnd), count: filteredUsers.length };
+      expect(ResponseHandler.sendSuccessResponse).toHaveBeenCalledWith(res, { data });
     });
 
     it('should return a specific page of the list of users when page and limit are not the default values', () => {
@@ -120,7 +124,8 @@ describe('UsersController', () => {
 
       UsersController.get(req, res);
   
-      expect(ResponseHandler.sendSuccessResponse).toHaveBeenCalledWith(res, { data: users.slice(start, end) });
+      const data = { users: users.slice(start, end), count: users.length };
+      expect(ResponseHandler.sendSuccessResponse).toHaveBeenCalledWith(res, { data });
     });
   });
  
