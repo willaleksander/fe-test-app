@@ -3,7 +3,7 @@ const DB = require('../DB/db');
 const UsersConstants = {
   pagination: {
     defaultPage: 0,
-    defaultLimit: DB.users.get().length
+    defaultLimit: () => DB.users.get().length
   }
 }
 

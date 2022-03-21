@@ -16,7 +16,7 @@ describe('UsersController', () => {
   const username = 'llinnard1';
   const activeStatusId = statuses.find(status => status.tag === 'USER_ACTIVE').id;
   const defaultPage = UsersConstants.pagination.defaultPage;
-  const defaultLimit = UsersConstants.pagination.defaultLimit;
+  const defaultLimit = UsersConstants.pagination.defaultLimit();
   const defaultStart = defaultPage * defaultLimit;
   const defaultEnd = defaultStart + defaultLimit;
 

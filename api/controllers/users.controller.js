@@ -8,7 +8,7 @@ const get = function(req, res) {
   const email = req.query.email;
   const username = req.query.username;
   const page = +req.query.page || UsersConstants.pagination.defaultPage;
-  const limit = +req.query.limit || UsersConstants.pagination.defaultLimit;
+  const limit = +req.query.limit || UsersConstants.pagination.defaultLimit();
   const start = page * limit;
   const end = start + limit;
 
