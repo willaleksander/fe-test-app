@@ -7,7 +7,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { UsersComponent } from './users/users.component';
 import { UsersCreateComponent } from './users-create/users-create.component';
 
-import { MatButtonModule } from '@angular/material';
+import { MatButtonModule, MatFormField, MatFormFieldModule, MatSelect, MatSelectModule } from '@angular/material';
+
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+
+import { HttpClientModule } from '@angular/common/http'; 
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -19,7 +24,12 @@ import { MatButtonModule } from '@angular/material';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MatButtonModule
+    MatButtonModule,
+    NgxDatatableModule,
+    HttpClientModule,
+    MatSelectModule,
+    MatFormFieldModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

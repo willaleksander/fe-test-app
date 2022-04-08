@@ -1,3 +1,21 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.is-active {
+    color: green !important;
+}
+
+.is-inactive {
+    color: red !important;
+}
+
+.size-selector {
+    text-align: center !important;
+    width: 80px;
+}
+
+.side-label-rows {
+    display: inline-block;
+
+}

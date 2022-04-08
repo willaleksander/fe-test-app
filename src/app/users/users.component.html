@@ -1,2 +1,52 @@
-<p>users works!</p>
-<button mat-raised-button color="primary">Primary</button>
+
+<div layout="row" layout-align="center center">
+    <button mat-raised-button color="primary">Primary</button>
+
+    <div layout="row"       layout-align="end center">
+        <mat-form-field appearance="legacy" class="size-selector">
+            <mat-select [(ngModel)]="page.size" name="size">
+                <mat-option *ngFor="let size of sizes" [value]="size">
+                {{size}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <div class="side-label-rows">Rows</div>
+    </div>
+</div>
+
+<mat-toolbar>
+    <mat-toolbar-row>
+
+    </mat-toolbar-row>
+</mat-toolbar>
+
+<ngx-datatable
+        class="material"
+        [rows]="users"
+        [columnMode]="ColumnMode.force"
+        [headerHeight]="50"
+        [footerHeight]="50"
+        rowHeight="auto"
+        [externalPaging]="true"
+        [count]="page.totalElements"
+        [offset]="page.pageNumber"
+        [limit]="page.size"
+        (page)="setPage($event)"
+      >
+
+    <ngx-datatable-column name="Username" [width]="80"></ngx-datatable-column>
+    <ngx-datatable-column name="Full Name" [width]="300" prop="first_name"></ngx-datatable-column>
+    <ngx-datatable-column name="Email"></ngx-datatable-column>
+    <ngx-datatable-column name="Status" [cellClass]="getCellClass" prop="id_status">
+        <ng-template let-value="value" ngx-datatable-cell-template>
+            {{ getCellStatus(value) }}
+        </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column name="Date Created" [width]="300" prop="created_date">
+        <ng-template let-value="value" ngx-datatable-cell-template>
+            {{ value.slice(0, 10) }}
+        </ng-template>
+    </ngx-datatable-column>
+      
+</ngx-datatable>
