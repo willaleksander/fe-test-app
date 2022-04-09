@@ -1,10 +1,14 @@
+<app-mat-spinner-overlay overlay="true" *ngIf="spinner">
+</app-mat-spinner-overlay>
 
-<div layout="row" layout-align="center center">
-    <button mat-raised-button color="primary">Primary</button>
+<mat-toolbar>
+    <mat-toolbar-row>
+        <button mat-raised-button color="primary" (click)="onCreateUserClick()">New User</button>
 
-    <div layout="row"       layout-align="end center">
-        <mat-form-field appearance="legacy" class="size-selector">
-            <mat-select [(ngModel)]="page.size" name="size">
+        <span class="toolbar-spacer"></span>
+
+        <mat-form-field appearance="legacy" class="size-selector right-spacer">
+            <mat-select [(ngModel)]="page.size" name="size" (selectionChange)="onPageSizeChange()">
                 <mat-option *ngFor="let size of sizes" [value]="size">
                 {{size}}
                 </mat-option>
@@ -12,12 +16,6 @@
         </mat-form-field>
 
         <div class="side-label-rows">Rows</div>
-    </div>
-</div>
-
-<mat-toolbar>
-    <mat-toolbar-row>
-
     </mat-toolbar-row>
 </mat-toolbar>
 

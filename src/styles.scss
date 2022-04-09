@@ -19,3 +19,15 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     display: inline-block;
 
 }
+
+.right-spacer {
+    margin-right: 10px;
+}
+
+.toolbar-spacer {
+    flex: 1 1 auto;
+}
+
+.toolbar {
+    display: flex;
+}

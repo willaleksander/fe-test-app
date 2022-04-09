@@ -11,7 +11,7 @@ export class StatusService {
   private url: string;
 
     constructor(private http: HttpClient) { 
-      this.url = GlobalConstrants.base_url + '/' + GlobalConstrants.statuses_endpoint;
+      this.url = GlobalConstrants.base_url + GlobalConstrants.statuses_endpoint;
     }
 
     public findAll(): Observable<any> {

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Page } from '../model/Page';
 
 import { ColumnMode } from '@swimlane/ngx-datatable';
@@ -6,6 +7,7 @@ import { User } from '../model/User';
 import { UserService } from '../services/user.service';
 import { StatusService } from '../services/status.service';
 import { Status } from '../model/status';
+import { GlobalConstrants } from '../common/global-constrants';
 
 interface PageInfo {
   offset: number;
@@ -23,14 +25,24 @@ export class UsersComponent implements OnInit {
   users = new Array<User>();
   statuses = new Array<Status>();
 
+  spinner = false;
+
   ColumnMode = ColumnMode;
 
   sizes = [10, 20, 30, 50, 100];
 
-  constructor(private userService: UserService, private statusService: StatusService) {
-    this.page.pageNumber = 0;
-    this.page.size = 20;
+  
+
+  constructor(
+    private userService: UserService, 
+    private statusService: StatusService,
+    private router: Router
+    ) {
+      this.page.pageNumber = 0;
+      this.page.size = 20;
    }
+
+   
 
   ngOnInit() {
     this.setPage({ offset: 0 });
@@ -42,6 +54,7 @@ export class UsersComponent implements OnInit {
    */
 
    setPage(pageInfo) {
+    this.spinner = true;
     this.page.pageNumber = pageInfo.offset;
     this.statusService.findAll().subscribe(data => {
       this.statuses = data.data;
@@ -49,6 +62,7 @@ export class UsersComponent implements OnInit {
         this.page.totalElements = data.data.count;
         this.page.totalPages = Math.ceil(this.page.totalElements/this.page.size);
         this.users = data.data.users;
+        this.spinner = false;
       });
     });
   }
@@ -67,8 +81,11 @@ export class UsersComponent implements OnInit {
     return statusDescription;
   }
 
-  onPageChange(pc) {
-    this.page.size = pc.value;
+  onPageSizeChange() {
     this.setPage({offset: 0});
+  }
+
+  onCreateUserClick() {
+    this.router.navigate([GlobalConstrants.users_endpoint + GlobalConstrants.createuser_endpoint]);
   }
 }
