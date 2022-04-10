@@ -1,5 +1,5 @@
 /**
- * A model for an individual status
+ A model for an individual status
  */
  export class Status {
     id: number;

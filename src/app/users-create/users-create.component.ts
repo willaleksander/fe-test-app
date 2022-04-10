@@ -9,6 +9,11 @@ import { UserService } from '../services/user.service';
 import { DialogUserCreated } from '../dialog-user-created/dialog-user-created.component';
 import { MatDialog } from '@angular/material';
 
+import { UsernameValidator } from '../common/username.validator';
+
+/**
+ * create user page, form to be fulfilled and create user
+ */
 @Component({
   selector: 'exads-users-create',
   templateUrl: './users-create.component.html',
@@ -16,8 +21,11 @@ import { MatDialog } from '@angular/material';
 })
 export class UsersCreateComponent implements OnInit {
 
+  gc = GlobalConstrants;
+
   user = new User();
 
+  // control loader 
   spinner = false;
 
   constructor(
@@ -30,18 +38,28 @@ export class UsersCreateComponent implements OnInit {
   
   }
 
+  // form to create user
   registerForm = new FormGroup({
-    username: new FormControl('', 
-      [Validators.required, Validators.minLength(3), 
-        Validators.maxLength(20), Validators.pattern(/^[^\{\}\"\[\]\.\!]*$/)]),
+    username: new FormControl(
+        '', 
+      [ Validators.required,
+        Validators.minLength(3), 
+        Validators.maxLength(20), 
+        Validators.pattern(/^[^\{\}\"\[\]\.\!]*$/) ],
+      [ UsernameValidator.createValidator(this.userService)]
+        ),
     firstname: new FormControl('', [Validators.required]),
     lastname: new FormControl(''),
     email: new FormControl('', [Validators.required, Validators.email]),
   });
 
+  // submit to create user
   onSubmit(): void {
+    //show loader
     this.spinner = true;
+
     this.user.id_status = 1;
+
     this.userService.createUser(this.user).subscribe( {
       next: data => {
         this.spinner = false;
@@ -52,7 +70,7 @@ export class UsersCreateComponent implements OnInit {
         });
     
         dialogRef.afterClosed().subscribe(result => {
-          this.router.navigate([GlobalConstrants.users_endpoint]);
+          this.router.navigate([this.gc.users_endpoint]);
         });
       },
       error: error => {
@@ -62,21 +80,10 @@ export class UsersCreateComponent implements OnInit {
     });
   }
 
+  /**
+   * go back to users page
+   */
   onCancelUserClick() {
-    this.router.navigate([GlobalConstrants.users_endpoint]);
+    this.router.navigate([this.gc.users_endpoint]);
   }
-
-  userValidator(control: FormControl) { 
-    let username = control.value;
-    if (username && username.length >= 3 && username.length <= 20) {
-      return this.userService.findByUsername(username).subscribe(data => {
-        if (data.data.count > 0) {
-           return {message: "User already exists"};
-        } else {
-           return null;
-        }
-      })}
-    return null;
-  }
-
 }

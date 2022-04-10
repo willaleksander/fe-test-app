@@ -9,25 +9,3 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .is-inactive {
     color: red !important;
 }
-
-.size-selector {
-    text-align: center !important;
-    width: 80px;
-}
-
-.side-label-rows {
-    display: inline-block;
-
-}
-
-.right-spacer {
-    margin-right: 10px;
-}
-
-.toolbar-spacer {
-    flex: 1 1 auto;
-}
-
-.toolbar {
-    display: flex;
-}

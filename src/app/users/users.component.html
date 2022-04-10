@@ -3,7 +3,7 @@
 
 <mat-toolbar>
     <mat-toolbar-row>
-        <button mat-raised-button color="primary" (click)="onCreateUserClick()">New User</button>
+        <button mat-raised-button color="primary" (click)="onCreateUserClick()">{{gc.users_list_newuser}}</button>
 
         <span class="toolbar-spacer"></span>
 
@@ -15,7 +15,7 @@
             </mat-select>
         </mat-form-field>
 
-        <div class="side-label-rows">Rows</div>
+        <div class="side-label-rows">{{gc.users_list_rows}}</div>
     </mat-toolbar-row>
 </mat-toolbar>
 
@@ -33,15 +33,15 @@
         (page)="setPage($event)"
       >
 
-    <ngx-datatable-column name="Username" [width]="80"></ngx-datatable-column>
-    <ngx-datatable-column name="Full Name" [width]="300" prop="first_name"></ngx-datatable-column>
-    <ngx-datatable-column name="Email"></ngx-datatable-column>
-    <ngx-datatable-column name="Status" [cellClass]="getCellClass" prop="id_status">
+    <ngx-datatable-column name="{{gc.users_form_username}}"></ngx-datatable-column>
+    <ngx-datatable-column name="{{gc.users_form_firstname}}" prop="first_name"></ngx-datatable-column>
+    <ngx-datatable-column name="{{gc.users_form_email}}"></ngx-datatable-column>
+    <ngx-datatable-column name="{{gc.users_form_status}}" [cellClass]="getCellClass" prop="id_status">
         <ng-template let-value="value" ngx-datatable-cell-template>
             {{ getCellStatus(value) }}
         </ng-template>
     </ngx-datatable-column>
-    <ngx-datatable-column name="Date Created" [width]="300" prop="created_date">
+    <ngx-datatable-column name="{{gc.users_form_datecreated}}" prop="created_date">
         <ng-template let-value="value" ngx-datatable-cell-template>
             {{ value.slice(0, 10) }}
         </ng-template>

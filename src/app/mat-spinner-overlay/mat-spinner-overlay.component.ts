@@ -5,6 +5,11 @@ import { Component, OnInit, Input } from '@angular/core';
   templateUrl: './mat-spinner-overlay.component.html',
   styleUrls: ['./mat-spinner-overlay.component.scss']
 })
+
+/*
+spinner to be used as loading overlay as required
+*/
+
 export class MatSpinnerOverlayComponent implements OnInit {
 
   constructor() { }

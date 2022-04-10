@@ -9,12 +9,9 @@ import { StatusService } from '../services/status.service';
 import { Status } from '../model/status';
 import { GlobalConstrants } from '../common/global-constrants';
 
-interface PageInfo {
-  offset: number;
-  pageSize: number;
-  limit: number;
-  count: number;
-}
+  /** 
+  User page, responsible for listing all users with pagination.
+  */
 @Component({
   selector: 'exads-users',
   templateUrl: './users.component.html',
@@ -29,9 +26,10 @@ export class UsersComponent implements OnInit {
 
   ColumnMode = ColumnMode;
 
+  //page sizes
   sizes = [10, 20, 30, 50, 100];
 
-  
+  gc = GlobalConstrants;
 
   constructor(
     private userService: UserService, 
@@ -42,8 +40,6 @@ export class UsersComponent implements OnInit {
       this.page.size = 20;
    }
 
-   
-
   ngOnInit() {
     this.setPage({ offset: 0 });
   }
@@ -52,7 +48,6 @@ export class UsersComponent implements OnInit {
    * Populate the table with new data based on the page number
    * @param page The page to select
    */
-
    setPage(pageInfo) {
     this.spinner = true;
     this.page.pageNumber = pageInfo.offset;
@@ -67,11 +62,19 @@ export class UsersComponent implements OnInit {
     });
   }
 
+  /**
+   * returns the respective class to color the user status
+   */
   getCellClass({ row, column, value }): any {
     if (value == 1) return ' is-active ';
     if (value == 3) return ' is-inactive ';
   }
 
+  /**
+   * 
+   * @param statusId 
+   * @returns the status description related to each user
+   */
   getCellStatus(statusId: number) {
     var statusDescription;
     this.statuses.forEach(function(status) {
@@ -81,11 +84,17 @@ export class UsersComponent implements OnInit {
     return statusDescription;
   }
 
+  /**
+   * re-build the screen after changing the page size and bring back to first page
+   */
   onPageSizeChange() {
     this.setPage({offset: 0});
   }
 
+  /**
+   * click to navigate to create user page
+   */
   onCreateUserClick() {
-    this.router.navigate([GlobalConstrants.users_endpoint + GlobalConstrants.createuser_endpoint]);
+    this.router.navigate([this.gc.users_endpoint + this.gc.createuser_endpoint]);
   }
 }

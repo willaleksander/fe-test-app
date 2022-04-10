@@ -1,5 +1,5 @@
 /**
- * A model for an individual User
+ A model for an individual User
  */
  export class User {
      id: number;
