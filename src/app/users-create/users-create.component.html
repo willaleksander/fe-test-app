@@ -21,7 +21,7 @@
             <mat-form-field appearance="standard" class="form-field w-48 m-1">
             <mat-label>{{gc.users_form_firstname}}</mat-label>
             <input matInput formControlName="firstname" name="firstname" [(ngModel)]="user.first_name">
-            <mat-error *ngIf="registerForm.value.firstname">{{gc.users_errormsg_required}}</mat-error>
+            <mat-error *ngIf="registerForm.get('firstname').hasError('required')">{{gc.users_errormsg_required}}</mat-error>
             </mat-form-field>
             <mat-form-field appearance="standard" class="form-field w-48 m-1">
             <mat-label>{{gc.users_form_lastname}}</mat-label>
@@ -32,7 +32,8 @@
             <mat-form-field appearance="standard" class="form-field w-98 m-1">
             <mat-label>{{gc.users_form_email}}</mat-label>
             <input matInput formControlName="email" name="email" [(ngModel)]="user.email">
-            <mat-error *ngIf="registerForm.value.email">{{gc.users_errormsg_emailformt}}</mat-error>
+            <mat-error *ngIf="registerForm.get('email').hasError('email')">{{gc.users_errormsg_emailformt}}</mat-error>
+            <mat-error *ngIf="registerForm.get('email').hasError('required')">{{gc.users_errormsg_required}}</mat-error>
             </mat-form-field>
         </div>
         <div class="toolbar">

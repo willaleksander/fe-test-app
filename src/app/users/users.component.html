@@ -35,7 +35,7 @@
 
     <ngx-datatable-column name="{{gc.users_form_username}}"></ngx-datatable-column>
     <ngx-datatable-column name="{{gc.users_form_firstname}}" prop="first_name"></ngx-datatable-column>
-    <ngx-datatable-column name="{{gc.users_form_email}}"></ngx-datatable-column>
+    <ngx-datatable-column name="{{gc.users_form_email}}" prop="email"></ngx-datatable-column>
     <ngx-datatable-column name="{{gc.users_form_status}}" [cellClass]="getCellClass" prop="id_status">
         <ng-template let-value="value" ngx-datatable-cell-template>
             {{ getCellStatus(value) }}
