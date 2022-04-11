@@ -1,6 +1,6 @@
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { margin: 0 ; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 .is-active {
     color: green !important;
@@ -8,4 +8,12 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 .is-inactive {
     color: red !important;
+}
+
+.toolbar-spacer {
+    flex: 1 1 auto;
+}
+
+.toolbar {
+    display: flex;
 }
